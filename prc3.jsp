@@ -10,7 +10,7 @@
 <h1>practice page</h1>
 	
 	<fieldset>
-	<form action="prc2.jsp" method="post">
+	<form action="prc4.jsp" method="post">
 		성함 <input type="text" name="name"> <br>
 		생년월일 <input type="text" name="birth" value="19xx년 xx월 xx일"> <br>
 		이메일 <input type="email" name="email" value="email@xxx.com"> <br>
