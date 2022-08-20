@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>prc2_2.jsp</h1>
+	
+	<%
+		//영역객체 정보 저장하기 
+		request.setAttribute("name", "NewJeans");
+	
+		pageContext.setAttribute("pc", "pageValue");
+		request.setAttribute("rq","requestValue");	
+		session.setAttribute("ss", "sessionValue");
+		application.setAttribute("app", "applicationValue");
+	%>
+	
+	<%
+		//prc2_1.jsp 에서 보낸 파라미터값
+		String name = request.getParameter("name");
+	%>
+	이름 : <%=name %>
+	<br>
+	<%
+		//영역객체 정보 가져오기 
+		String name2 = (String)request.getAttribute("name");
+	%>
+	이름2 : <%=name2 %>
+	<hr>
+	page : <%=pageContext.getAttribute("pc") %> <br>
+	request : <%=request.getAttribute("rq") %> <br>
+	session : <%=session.getAttribute("ss") %> <br>
+	application : <%=application.getAttribute("app") %> <br>
+</body>
+</html>
