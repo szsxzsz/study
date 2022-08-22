@@ -1,0 +1,37 @@
+// 0.전달정보 name, gender, age, jumin 변수에 전달됨(가정)
+String name = request.getParameter("name");
+String gender = request.getParameter("gender");
+Int age = Integer.parseInt(request.getParameter("age"));
+String jumin = request.getParameter("jumin");
+​
+final String Driver= "com.mysql.cj.jdbc.Driver";
+final String DBURL = "jdbc:mysql://localhost:3306/jspdb";
+final String DBID = "root";
+final String DBPW = "root의 비밀번호";
+
+// 1. 드라이버 로드
+Class.forName(DRIVER);
+
+​
+
+// 2. DB 연결
+Connection con = DriverManager.getConnection(DBURL,DBID,DBPW);
+
+​
+
+// 3. SQL 작성 & pstmt
+String sql = "insert into member (name, gender, age, jumin) values (?,?,?,?);
+
+​
+prepareStatement pstmt = con.prepareStatement(sql);
+
+// ??? 처리
+pstmt.setString(1,name);
+pstmt.setString(2,gender);
+pstmt.setString(3,age);
+pstmt.setString(4,jumin);
+
+​
+
+// 4. SQL 실행
+pstmt.Statement();
