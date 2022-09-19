@@ -1,0 +1,61 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>updatePro.jsp</h1>
+	<%
+		request.setCharacterEncoding("utf-8");
+		
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String id = request.getParameter("id"); %>
+		
+		update name : <%=name %>, update age : <%=age %> <br>
+		<% 
+		
+		// 디비연결정보 (상수)
+			 	final String DRIVER = "com.mysql.cj.jdbc.Driver";
+			 	final String DBURL = "jdbc:mysql://localhost:3306/sys";
+			 	final String DBID = "root";
+			 	final String DBPW = "1234";
+		
+		Class.forName(DRIVER);
+		Connection con = DriverManager.getConnection(DBURL,DBID,DBPW);
+		
+		String sql = "SELECT * FROM itwill_member where id=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		%>
+		<%=id %>		
+		<% 
+		ResultSet rs = pstmt.executeQuery();
+		
+		
+// 		System.out.println(rs.next()); -> it should be use for only once check!!!! true or false
+		if (rs.next()){
+			sql = "update itwill_member set name=?, age=? where id=?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setInt(2, age);
+			pstmt.setString(3, id);
+			
+			pstmt.executeUpdate();
+		} else {
+			// not a user
+		System.out.println("not a user");
+		}
+	
+		%>
+</body>
+</html>
